@@ -1,0 +1,24 @@
+name: CI Workflow
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Ambil Kode dari Repository
+      uses: actions/checkout@v3
+
+    - name: Install Compiler g++
+      run: sudo apt-get install g++
+
+    - name: Compile File C++
+      run: g++ stack.cpp -o main
+
+    - name: Jalankan Program
+      run: ./main
